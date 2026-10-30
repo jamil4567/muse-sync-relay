@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: muse-sync-relay
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: "python relay_server.py"

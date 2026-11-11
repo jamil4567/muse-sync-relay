@@ -1,0 +1,18 @@
+<idea-plugin>
+  <id>com.muse.sync</id>
+  <name>Muse Sync</name>
+  <version>2.0.0</version>
+  <vendor>Muse</vendor>
+  <description>Shows files and code sent by Muse inside the open Android Studio project, streamed in line by line as if typed here. When a Gradle build fails, its errors are sent to Muse automatically.</description>
+  <!-- FIX for "requires build 242.* or older but current build is AI-262.9437.185":
+       Allow this plugin on the user's newer Android Studio (build 262).
+       since-build 242 keeps the 2024.2 compile target; until-build 262.* allows 262.x. -->
+  <idea-version since-build="242" until-build="262.*"/>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <toolWindow id="Muse Sync" anchor="right" factoryClass="com.muse.sync.MuseSyncToolWindowFactory"/>
+    <!-- v2: always-on build-error reporting — the reporter subscribes as soon
+         as a project opens, even if the tool window is never opened. -->
+    <projectManagerListener implementation="com.muse.sync.MuseSyncProjectListener"/>
+  </extensions>
+</idea-plugin>
